@@ -3,10 +3,10 @@
 }
 
 body {
-  font-size: 10px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: white;
 }
+
 /* .container{
     display: block;
     width: 100%;
@@ -16,13 +16,6 @@ body {
     outline: none;
     transition: background 0.2s, border-color 0.2s;
   } */
-
-.bt {
-  width: max-content;
-  height: max-content;
-  background-color: yellow;
-  font-size: 25px;
-}
 
 .jumbotron {
   height: 50px;
@@ -48,10 +41,7 @@ aside {
   font-style: italic;
   background-color: lightgray;
 }
-button {
-  height: 34px;
-  width: 66px;
-}
+
 
 div.menu {
   width: 100%;

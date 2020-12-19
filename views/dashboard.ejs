@@ -36,75 +36,86 @@
     <%- include ('./partials/header.ejs',{currentUser}) %>
 
     <div style="color: white" class="container center">
-      <div class="page-area">
-        <% if (dataSource) { %>
-          <% var data=dataSource %>
-          <% var labels=[] %>
-          <% data.labels.forEach(label=> labels.push('"' + label + '"')) %>
-        <% }%>
-          <form method="POST" action="/login/dashboard">
-            <div class="form-group row" , style="font-size: 20px">
+      <% if (dataSource) { %> <% var data=dataSource %> <% var labels=[] %> <%
+      data.labels.forEach(label=> labels.push('"' + label + '"')) %> <% }%>
+      <form method="POST" action="/login/dashboard" style="width: 60%; margin: 0 auto;">
+        <div class="row justify-content-center">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01"
+              >Month</label
+            >
+          </div>
+          <select class="custom-select" id="Month" name="Month">
+            <option value="00" selected>Choose...</option>
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+        </div>
 
-              <label class="col-sm-2 col-form-label">Month</label>
-              <div class="col-sm-10">
-                <select id="month" name="Month">
-                  <option value="01">January</option>
-                  <option value="02">February</option>
-                  <option value="03">March</option>
-                  <option value="04">April</option>
-                  <option value="05">May</option>
-                  <option value="06">June</option>
-                  <option value="07">July</option>
-                  <option value="08">August</option>
-                  <option value="09">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
-                </select>
-              </div>
-              <label class="col-sm-2 col-form-label">Year:</label>
-              <div class="col-sm-10">
-                <select id="year" name="Year">
-                  <option value="2020">2020</option>
-                  <option value="2021">2021</option>
-                  <option value="2022">2022</option>
-                </select>
-              </div>
-            </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01"
+              >Year</label
+            >
+          </div>
+          <select class="custom-select" id="year" name="Year">
+            <option value="0" selected>Choose...</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+          </select>
+        </div>
+        </div>
 
-            <button class="btn" type="submit">
-              Generate Chart
-            </button>
+          <button type="submit" class="btn btn-primary">
+            Generate Chart
+          </button>
+          <button class="btn" type="reset" id="reset">
+            Reset
+          </button>
+      </form>
 
-          </form>
+      <br />
 
-          <br>
-          <% if (month) { %> <% if (month=="01" ) { %>
-          <h3>Charts for January <%= (year) %></h3>
-          <% }%> <% if (month=="02" ) { %>
-          <h3>Charts for February <%= (year) %></h3>
-          <% }%> <% if (month=="03" ) { %>
-          <h3>Charts for March <%= (year) %></h3>
-          <% }%> <% if (month=="04" ) { %>
-          <h3>Charts for April <%= (year) %></h3>
-          <% }%> <% if (month=="05" ) { %>
-          <h3>Charts for May <%= (year) %></h3>
-          <% }%> <% if (month=="06" ) { %>
-          <h3>Charts for June <%= (year) %></h3>
-          <% }%> <% if (month=="07" ) { %>
-          <h3>Charts for July <%= (year) %></h3>
-          <% }%> <% if (month=="08" ) { %>
-          <h3>Charts for August <%= (year) %></h3>
-          <% }%> <% if (month=="09" ) { %>
-          <h3>Charts for September <%= (year) %></h3>
-          <% }%> <% if (month=="10" ) { %>
-          <h3>Charts for October <%= (year) %></h3>
-          <% }%> <% if (month=="11" ) { %>
-          <h3>Charts for November <%= (year) %></h3>
-          <% }%> <% if (month=="12" ) { %>
-          <h3>Charts for December <%= (year) %></h3>
-          <% }%> <% }%>
-      </div>
+      <% if (month) { %> <% if (month=="00" || year=="0" ) { %>
+      <h3>Please select both month and year</h3>
+      <% }%> <% if (month=="01" && year!="0") { %>
+      <h3>Charts for <b>January <%= (year) %></b></h3>
+      <% }%> <% if (month=="02" && year!="0") { %>
+      <h3>Charts for <b>February <%= (year) %></b></h3>
+      <% }%> <% if (month=="03" && year!="0") { %>
+      <h3>Charts for <b>March <%= (year) %></b></h3>
+      <% }%> <% if (month=="04" && year!="0") { %>
+      <h3>Charts for <b>April <%= (year) %></b></h3>
+      <% }%> <% if (month=="05" && year!="0") { %>
+      <h3>Charts for <b>May <%= (year) %></b></h3>
+      <% }%> <% if (month=="06" && year!="0") { %>
+      <h3>Charts for <b>June <%= (year) %></b></h3>
+      <% }%> <% if (month=="07" && year!="0") { %>
+      <h3>Charts for <b>July <%= (year) %></b></h3>
+      <% }%> <% if (month=="08" && year!="0") { %>
+      <h3>Charts for <b>August <%= (year) %></b></h3>
+      <% }%> <% if (month=="09" && year!="0") { %>
+      <h3>Charts for <b>September <%= (year) %></b></h3>
+      <% }%> <% if (month=="10" && year!="0") { %>
+      <h3>Charts for <b>October <%= (year) %></b></h3>
+      <% }%> <% if (month=="11" && year!="0") { %>
+      <h3>Charts for <b>November <%= (year) %></b></h3>
+      <% }%> <% if (month=="12" && year!="0") { %>
+      <h3>Charts for <b>December <%= (year) %></b></h3>
+      <% }%> <% }%>
     </div>
     <div style="color: white" class="container center">
       <table>
@@ -135,11 +146,6 @@
         <tr>
           <th style="padding-left: 100px; padding-right: 100px">
             <p>
-              <canvas id="LineChart" width="400" height="400"></canvas>
-            </p>
-          </th>
-          <th style="padding-left: 100px; padding-right: 100px">
-            <p>
               <canvas id="DoughnutChart" width="400" height="400"></canvas>
             </p>
           </th>
@@ -157,136 +163,111 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      var dataSource = {
-          datasets: [
-              {
-                  data: [<%= data.datasets[0].data %>],
-                  backgroundColor: [
-                    "#0074D9",
-                    "#FF4136",
-                    "#2ECC40",
-                    "#FF851B",
-                    "#7FDBFF",
-                    "#B10DC9",
-                    "#FFDC00",
-                    "#39CCCC",
-                    "#39CCCC",
-                    "#01FF70",
-                    "#85144b",
-                    "#F012BE",
-                    "#3D9970",
-                    "#111111",
-                    "#AAAAAA",
 
-                  ],
-              }
-          ],
-          labels: [<%- labels %>],
 
-      };
+        if (<%= data.datasets[0].data %>) {
 
-      function createChart() {
-          var ctx = document.getElementById("myChart").getContext("2d");
-          var myPieChart = new Chart(ctx, {
-              type: 'pie',
-              data: dataSource,
-              options: {
-                  legend: {
-                      display: true,
-                      labels: {
-                          fontColor: 'white'
-                      }
-                  }
-              }
-          });
+        var dataSource = {
+            datasets: [
+                {
+                    data: [<%= data.datasets[0].data %>],
+                    backgroundColor: [
+                      "#0074D9",
+                      "#FF4136",
+                      "#2ECC40",
+                      "#FF851B",
+                      "#7FDBFF",
+                      "#B10DC9",
+                      "#FFDC00",
+                      "#39CCCC",
+                      "#39CCCC",
+                      "#01FF70",
+                      "#85144b",
+                      "#F012BE",
+                      "#3D9970",
+                      "#111111",
+                      "#AAAAAA",
+
+                    ],
+                }
+            ],
+            labels: [<%- labels %>],
+
+        };
+
+        function createChart() {
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var myPieChart = new Chart(ctx, {
+                type: 'polarArea',
+                data: dataSource,
+                options: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: 'white'
+                        }
+                    }
+                }
+            });
+        }
+
+
+
+        function createDoughnutChart() {
+            var ctx = document.getElementById("DoughnutChart").getContext("2d");
+            var myPieChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: dataSource,
+                options: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: 'white'
+                        }
+                    }
+                }
+            });
+        }
+
+        function createBarChart(type, id, legendDisplay) {
+            var ctx = document.getElementById(id).getContext("2d");
+            var myPieChart = new Chart(ctx, {
+                type: type,
+                data: dataSource,
+                barPercentage: 0.5,
+                barThickness: 6,
+                maxBarThickness: 8,
+                minBarLength: 2,
+                options: {
+                    legend: {
+                        display: legendDisplay,
+                        labels: {
+                            fontColor: 'white'
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+
+                                stepValue: 10,
+                                fontColor: 'white'
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontColor: 'white'
+                            },
+                        }]
+                    }
+                }
+            });
+        }
+
+        createChart();
+        createBarChart(type = 'line', id = 'myBarChart', legendDisplay = false);
+        createDoughnutChart();
       }
-
-      function createLineChart() {
-          var ctx = document.getElementById("LineChart").getContext("2d");
-          var myLineChart = new Chart(ctx, {
-              type: 'line',
-              data: dataSource,
-              options: {
-                  legend: {
-                      display: legendDisplay,
-                      labels: {
-                          fontColor: 'white'
-                      }
-                  },
-                  scales: {
-                      yAxes: [{
-                          ticks: {
-                              beginAtZero: true,
-
-                              stepValue: 10,
-                              fontColor: 'white'
-                          }
-                      }],
-                      xAxes: [{
-                          ticks: {
-                              fontColor: 'white'
-                          },
-                      }]
-                  }
-              }
-          });
-      }
-
-      function createDoughnutChart() {
-          var ctx = document.getElementById("DoughnutChart").getContext("2d");
-          var myPieChart = new Chart(ctx, {
-              type: 'doughnut',
-              data: dataSource,
-              options: {
-                  legend: {
-                      display: true,
-                      labels: {
-                          fontColor: 'white'
-                      }
-                  }
-              }
-          });
-      }
-
-      function createBarChart(type, id, legendDisplay) {
-          var ctx = document.getElementById(id).getContext("2d");
-          var myPieChart = new Chart(ctx, {
-              type: type,
-              data: dataSource,
-              barPercentage: 0.5,
-              barThickness: 6,
-              maxBarThickness: 8,
-              minBarLength: 2,
-              options: {
-                  legend: {
-                      display: legendDisplay,
-                      labels: {
-                          fontColor: 'white'
-                      }
-                  },
-                  scales: {
-                      yAxes: [{
-                          ticks: {
-                              beginAtZero: true,
-
-                              stepValue: 10,
-                              fontColor: 'white'
-                          }
-                      }],
-                      xAxes: [{
-                          ticks: {
-                              fontColor: 'white'
-                          },
-                      }]
-                  }
-              }
-          });
-      }
-
-      createChart();
-      createBarChart(type = 'bar', id = 'myBarChart', legendDisplay = false);
-      createLineChart();
-      createDoughnutChart();
     </script>
   </body>
 </html>
