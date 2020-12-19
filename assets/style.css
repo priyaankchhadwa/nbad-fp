@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.jumbotron {
+  height: 50px;
+  background: rgba(0, 0, 0, 0.445);
+}
+
+.list-group-item {
+  border: none;
+  background-color: transparent;
+}
+
+.login-class {
+  border: none;
+}
+
+.btn-sm {
+  border-radius: 1rem;
+}
+
+.background {
+  background: linear-gradient(15deg, #13547a 0%, #80d0c7 100%) no-repeat center
+    center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+}

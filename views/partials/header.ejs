@@ -1,0 +1,98 @@
+<header class="jumbotron">
+  <div class="container-fluid" style="margin-top: -20px">
+    <div class="row">
+      <div class="col-sm-2" style="max-width: fit-content; margin-top: -20px">
+        <a href="/"
+          ><img src="/assets/Images/logo.png" width="80px" height="80px"
+        /></a>
+      </div>
+      <div class="col-sm-4">
+        <h2 class="text-left" style="color: white">Budget Manager</h2>
+      </div>
+      <div class="col-sm-6 offset-md-1" style="position: absolute; right: 0">
+        <ul class="list-inline">
+          <% if (token) { %> <% var token=token.token %> <% } %> <% if
+          (currentUser) { %> <% var user=currentUser.userId %>
+          <li class="list-inline-item">
+            <a class="btn btn-dark" role="button" href="/login/dashboard"
+              >Dashboard
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="btn btn-dark" role="button" href="/login/savedevents"
+              >My Budget
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="btn btn-dark" href="/event/newevent" role="button"
+              >Configure Budget
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="btn btn-dark" href="/login/signout" role="button"
+              >Sign Out <i class="fa fa-sign-out" aria-hidden="true"></i>
+            </a>
+          </li>
+          <% } else { %>
+          <li class="list-inline-item">
+            <a class="btn btn-dark" role="button" href="/login"
+              >Login <i class="fa fa-sign-in" aria-hidden="true"></i
+            ></a>
+          </li>
+          <li class="list-inline-item">
+            <a class="btn btn-dark" role="button" href="/signup"
+              >Sign Up <i class="fa fa-user-plus"></i
+            ></a>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row justify-content-between" style="margin-top: 10px">
+    <div class="col-sm-4">
+      <ul class="list-inline">
+        <li class="list-inline-item"></li>
+      </ul>
+    </div>
+    <% if (currentUser) { %>
+    <div class="col-sm-4">
+      <h4>Hello <%=currentUser.firstName %>!</h4>
+    </div>
+    <% } %>
+  </div>
+</header>
+
+<br />
+<script>
+  if (<%- user %>) {
+    renewFunc();
+  }
+  function renewFunc() {
+    timeout = setTimeout(alertFunc, 40000);
+  }
+  function alertFunc() {
+    var txt;
+    var r = confirm("Your session will expire in 20 seconds, Press cancel to renew the session", "Renew", "Dismiss");
+    if (r == true) {
+      txt = "You pressed OK!";
+      nonRenewFunc()
+    }
+    else {
+      txt = "You pressed Cancel!";
+      renewFunc();
+    }
+  }
+
+  function nonRenewFunc() {
+    timeout = setTimeout(alertRemainFunc, 20000);
+  }
+
+  function alertRemainFunc() {
+    window.location.href = '/login/signout';
+  }
+</script>
